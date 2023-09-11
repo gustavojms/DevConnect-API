@@ -11,7 +11,7 @@ export class UsersRepository implements UsersInterfaceRepository {
   constructor(@Inject(PrismaService) private prisma: PrismaService) {}
 
   async create(user: CreateUserDto): Promise<CreateUserDto> {
-    const userExists = await this.prisma.user.findFirstOrThrow({
+    const userExists = await this.prisma.user.findFirst({
       where: {
         email: user.email,
       },
@@ -28,5 +28,19 @@ export class UsersRepository implements UsersInterfaceRepository {
     });
 
     return userCreated;
+  }
+
+  async login(user: CreateUserDto): Promise<CreateUserDto> {
+    const userExists = await this.prisma.user.findFirst({
+      where: {
+        email: user.email,
+      },
+    });
+
+    if (!userExists) {
+      throw new ConflictException('Usuário não existe.');
+    }
+
+    return userExists;
   }
 }

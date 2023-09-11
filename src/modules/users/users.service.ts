@@ -12,6 +12,11 @@ export class UsersService {
     return user;
   }
 
+  async login(createUserDto: CreateUserDto) {
+    const user = await this.userRepository.login(createUserDto);
+    return user;
+  }
+
   findAll() {
     return `This action returns all users`;
   }

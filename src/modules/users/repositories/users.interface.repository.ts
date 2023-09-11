@@ -6,4 +6,5 @@ export interface UsersInterfaceRepository {
    * Aqui vai a definição de todos os métodos que serão implementados
    */
   create(user: CreateUserDto): Promise<CreateUserDto>;
+  login(user: CreateUserDto): Promise<CreateUserDto>;
 }
