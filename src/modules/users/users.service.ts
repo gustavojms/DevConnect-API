@@ -25,6 +25,11 @@ export class UsersService {
     return `This action returns a #${id} user`;
   }
 
+  findByEmail(email: string) {
+    const user = this.userRepository.findByEmail(email);
+    return user;
+  }
+
   update(id: number, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
   }

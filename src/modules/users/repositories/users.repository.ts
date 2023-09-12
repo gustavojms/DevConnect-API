@@ -43,4 +43,46 @@ export class UsersRepository implements UsersInterfaceRepository {
 
     return userExists;
   }
+
+  async findOne(id: number): Promise<CreateUserDto> {
+    const userExists = await this.prisma.user.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!userExists) {
+      throw new ConflictException('Usuário não existe.');
+    }
+
+    return userExists;
+  }
+
+  async findByEmail(email: string): Promise<CreateUserDto> {
+    const userExists = await this.prisma.user.findFirst({
+      where: {
+        email: email,
+      },
+    });
+
+    if (!userExists) {
+      throw new ConflictException('Usuário não existe.');
+    }
+
+    return userExists;
+  }
+
+  async findByUsername(username: string): Promise<CreateUserDto> {
+    const userExists = await this.prisma.user.findFirst({
+      where: {
+        username: username,
+      },
+    });
+
+    if (!userExists) {
+      throw new ConflictException('Usuário não existe.');
+    }
+
+    return userExists;
+  }
 }

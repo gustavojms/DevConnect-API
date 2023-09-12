@@ -7,4 +7,7 @@ export interface UsersInterfaceRepository {
    */
   create(user: CreateUserDto): Promise<CreateUserDto>;
   login(user: CreateUserDto): Promise<CreateUserDto>;
+  findOne(id: number): Promise<CreateUserDto>;
+  findByEmail(email: string): Promise<CreateUserDto>;
+  findByUsername(username: string): Promise<CreateUserDto>;
 }
