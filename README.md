@@ -37,7 +37,7 @@ $ npm run build
 ## Gerenciamento de Perfil de Usuário
 
 - [x] `GET /api/user/profile`: Obtém informações do perfil do usuário atual.
-- [] `PUT /api/user/profile`: Atualiza informações do perfil do usuário atual.
+- [ ] `PUT /api/user/profile`: Atualiza informações do perfil do usuário atual.
 
 ## Posts e Comentários
 
