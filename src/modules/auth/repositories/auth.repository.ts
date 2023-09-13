@@ -46,7 +46,7 @@ export class AuthRepository implements AuthInterfaceRepository {
     }
 
     const payload = {
-      sub: user.id,
+      sub: user.userId,
       username: user.username,
     };
 

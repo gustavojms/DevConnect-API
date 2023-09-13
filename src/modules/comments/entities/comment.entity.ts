@@ -1,7 +1,7 @@
 import { Comment } from '@prisma/client';
 
 export class CommentEntity implements Comment {
-  id: number;
+  commentId: number;
   content: string;
   postId: number;
   authorId: number;

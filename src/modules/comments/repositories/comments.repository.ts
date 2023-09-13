@@ -28,10 +28,10 @@ export class CommentsRepository {
     return comments;
   }
 
-  async findOne(id: number): Promise<CreateCommentDto> {
+  async findOne(commentId: number): Promise<CreateCommentDto> {
     const comment = await this.prisma.comment.findUnique({
       where: {
-        id: id,
+        commentId: commentId,
       },
     });
 
@@ -39,14 +39,14 @@ export class CommentsRepository {
   }
 
   async update(
-    id: number,
+    commentId: number,
     postId: number,
     comment: UpdateCommentDto,
   ): Promise<UpdateCommentDto> {
     const authorId = Number(comment.authorId);
     const commentUpdated = await this.prisma.comment.update({
       where: {
-        id: id,
+        commentId: commentId,
       },
       data: {
         content: comment.content,
@@ -59,10 +59,10 @@ export class CommentsRepository {
     return commentUpdated;
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(commentId: number): Promise<void> {
     await this.prisma.comment.delete({
       where: {
-        id: id,
+        commentId: commentId,
       },
     });
   }

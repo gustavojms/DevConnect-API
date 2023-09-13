@@ -10,44 +10,10 @@ import { CreateUserDto } from '../dto/create-user.dto';
 export class UsersRepository implements UsersInterfaceRepository {
   constructor(@Inject(PrismaService) private prisma: PrismaService) {}
 
-  async create(user: CreateUserDto): Promise<CreateUserDto> {
-    const userExists = await this.prisma.user.findFirst({
-      where: {
-        email: user.email,
-      },
-    });
-
-    if (userExists) {
-      throw new ConflictException('Usuário já existe.');
-    }
-
-    const userCreated = await this.prisma.user.create({
-      data: {
-        ...user,
-      },
-    });
-
-    return userCreated;
-  }
-
-  async login(user: CreateUserDto): Promise<CreateUserDto> {
-    const userExists = await this.prisma.user.findFirst({
-      where: {
-        email: user.email,
-      },
-    });
-
-    if (!userExists) {
-      throw new ConflictException('Usuário não existe.');
-    }
-
-    return userExists;
-  }
-
-  async findOne(id: number): Promise<CreateUserDto> {
+  async findOne(userId: number): Promise<CreateUserDto> {
     const userExists = await this.prisma.user.findUnique({
       where: {
-        id: id,
+        userId: userId,
       },
     });
 

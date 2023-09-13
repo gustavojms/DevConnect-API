@@ -11,8 +11,7 @@ export class PostsRepository implements PostsInterfaceRepository {
     const userId = Number(post.userId);
     const postCreated = await this.prisma.post.create({
       data: {
-        title: post.title,
-        body: post.body,
+        content: post.content,
         userId: userId,
       },
     });
@@ -26,25 +25,24 @@ export class PostsRepository implements PostsInterfaceRepository {
     return posts;
   }
 
-  async findOne(id: number): Promise<CreatePostDto> {
+  async findOne(postId: number): Promise<CreatePostDto> {
     const post = await this.prisma.post.findUnique({
       where: {
-        id: id,
+        postId: postId,
       },
     });
 
     return post;
   }
 
-  async update(id: number, post: UpdatePostDto): Promise<UpdatePostDto> {
+  async update(postId: number, post: UpdatePostDto): Promise<UpdatePostDto> {
     const userId = Number(post.userId);
     const postUpdated = await this.prisma.post.update({
       where: {
-        id: id,
+        postId: postId,
       },
       data: {
-        title: post.title,
-        body: post.body,
+        content: post.content,
         userId: userId,
         updatedAt: new Date(),
       },
@@ -53,10 +51,10 @@ export class PostsRepository implements PostsInterfaceRepository {
     return postUpdated;
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(postId: number): Promise<void> {
     await this.prisma.post.delete({
       where: {
-        id: id,
+        postId: postId,
       },
     });
   }
