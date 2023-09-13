@@ -41,15 +41,15 @@ $ npm run build
 
 ## Posts e Comentários
 
-- [ ] `GET /api/posts`: Obtém uma lista de posts.
-- [ ] `GET /api/posts/:id`: Obtém um post específico.
-- [ ] `POST /api/posts`: Cria um novo post.
-- [ ] `PUT /api/posts/:id`: Atualiza um post existente.
-- [ ] `DELETE /api/posts/:id`: Deleta um post.
-- [ ] `GET /api/posts/:id/comments`: Obtém comentários para um post.
-- [ ] `POST /api/posts/:id/comments`: Adiciona um novo comentário a um post.
-- [ ] `PUT /api/comments/:id`: Atualiza um comentário.
-- [ ] `DELETE /api/comments/:id`: Deleta um comentário.
+- [x] `GET /api/posts`: Obtém uma lista de posts.
+- [x] `GET /api/posts/:id`: Obtém um post específico.
+- [x] `POST /api/posts`: Cria um novo post.
+- [x] `PUT /api/posts/:id`: Atualiza um post existente.
+- [x] `DELETE /api/posts/:id`: Deleta um post.
+- [x] `GET /api/posts/:id/comments`: Obtém comentários para um post.
+- [x] `POST /api/posts/:id/comments`: Adiciona um novo comentário a um post.
+- [x] `PUT /api/comments/:id`: Atualiza um comentário.
+- [x] `DELETE /api/comments/:id`: Deleta um comentário.
 
 ## Curtidas e Reações
 
