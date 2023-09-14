@@ -11,7 +11,7 @@ datasource db {
 }
 
 model User {
-  id Int     @id @default(autoincrement())
+  userId Int     @id @default(autoincrement())
   username String
   email String    @unique
   password String
@@ -24,67 +24,68 @@ model User {
   Like Like[]
   author Task[] @relation("author")
   responsible Task[] @relation("responsible")
+  leader Team[]
   member TeamMember[]
   chatMember ChatMember[]
   role Role[]
 }
 
 model Role {
-  id Int     @id @default(autoincrement())
+  roleId Int     @id @default(autoincrement())
   roleName String
   userId Int
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  User User @relation(fields: [userId], references: [id])
+  User User @relation(fields: [userId], references: [userId])
 }
 
 model Post {
-  id Int     @id @default(autoincrement())
-  title String
-  body String
+  postId Int     @id @default(autoincrement())
+  content String
   userId Int
+  likesCount Int @default(0)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  User User @relation(fields: [userId], references: [id])
+  User User @relation(fields: [userId], references: [userId])
   comments Comment[]
   likes Like[]
 }
 
 model Comment {
-  id Int     @id @default(autoincrement())
+  commentId Int     @id @default(autoincrement())
   content String
   postId Int
   authorId Int
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  User User @relation(fields: [authorId], references: [id])
-  Post Post @relation(fields: [postId], references: [id])
+  User User @relation(fields: [authorId], references: [userId])
+  Post Post @relation(fields: [postId], references: [postId])
   replies Reply[]
 }
 
 model Reply {
-  id Int     @id @default(autoincrement())
+  replyId Int     @id @default(autoincrement())
   content String
   commentId Int
-  authorId Int
+  userId Int
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  User User @relation(fields: [authorId], references: [id])
-  Comment Comment @relation(fields: [commentId], references: [id])
+  User User @relation(fields: [userId], references: [userId])
+  Comment Comment @relation(fields: [commentId], references: [commentId])
 }
 
 model Like {
-  id Int     @id @default(autoincrement())
-  authorId Int
+  likeId Int     @id @default(autoincrement())
+  userId Int
   postId Int
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  User User @relation(fields: [authorId], references: [id])
-  Post Post @relation(fields: [postId], references: [id])
+  User User @relation(fields: [userId], references: [userId])
+  Post Post @relation(fields: [postId], references: [postId])
 }
 
 model Project {
-  id Int     @id @default(autoincrement())
+  projectId Int     @id @default(autoincrement())
   title String
   description String
   projectOwner Int
@@ -95,44 +96,45 @@ model Project {
 }
 
 model Task {
-  id Int     @id @default(autoincrement())
+  taskId Int     @id @default(autoincrement())
   title String
   description String?
   priority String
   status String
   hoursTaken Float
-  authorId Int
+  userId Int
   responsibleId Int
   projectId Int
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  author User @relation("author", fields: [authorId], references: [id])
-  responsible User @relation("responsible", fields: [responsibleId], references: [id])
-  project Project @relation(fields: [projectId], references: [id])
+  author User @relation("author", fields: [userId], references: [userId])
+  responsible User @relation("responsible", fields: [responsibleId], references: [userId])
+  project Project @relation(fields: [projectId], references: [projectId])
 }
 
 model Team {
-  id Int     @id @default(autoincrement())
+  teamId Int     @id @default(autoincrement())
   teamName String
   description String?
   leaderId Int
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   members TeamMember[]
+  leader User @relation(fields: [leaderId], references: [userId])
 }
 
 model TeamMember {
-  id Int     @id @default(autoincrement())
+  teamMemberId Int     @id @default(autoincrement())
   memberId Int
   teamId Int
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  member User @relation(fields: [memberId], references: [id])
-  team Team @relation(fields: [teamId], references: [id])
+  member User @relation(fields: [memberId], references: [userId])
+  team Team @relation(fields: [teamId], references: [teamId])
 }
 
 model Chat {
-  id Int     @id @default(autoincrement())
+  chatId Int     @id @default(autoincrement())
   chatType String
   chatName String
   chatOwner Int
@@ -143,22 +145,22 @@ model Chat {
 }
 
 model ChatMember {
-  id Int     @id @default(autoincrement())
+  chatMemberId Int     @id @default(autoincrement())
   chatId Int
   userId Int
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  chat Chat @relation(fields: [chatId], references: [id])
-  user User @relation(fields: [userId], references: [id])
+  chat Chat @relation(fields: [chatId], references: [chatId])
+  user User @relation(fields: [userId], references: [userId])
 }
 
 model Message {
-  id Int     @id @default(autoincrement())
+  messageId Int     @id @default(autoincrement())
   content String
   dateTime DateTime
   sender Int
   chatId Int
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  chat Chat @relation(fields: [chatId], references: [id])
+  chat Chat @relation(fields: [chatId], references: [chatId])
 }
