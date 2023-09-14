@@ -10,6 +10,8 @@ import { JwtAuthGuard } from './modules/auth/jwt-auth.guard';
 import { PostsModule } from './modules/posts/posts.module';
 import { CommentsModule } from './modules/comments/comments.module';
 import { LikesModule } from './modules/likes/likes.module';
+import { TeamsModule } from './modules/teams/teams.module';
+import { TeamMembersModule } from './modules/team_members/team_members.module';
 import { ProjectsModule } from './modules/projects/projects.module';
 
 @Module({
@@ -19,6 +21,8 @@ import { ProjectsModule } from './modules/projects/projects.module';
     PostsModule,
     CommentsModule,
     LikesModule,
+    TeamsModule,
+    TeamMembersModule,
     ProjectsModule,
     ConfigModule.forRoot({ isGlobal: true }),
   ],

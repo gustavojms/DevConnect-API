@@ -24,6 +24,7 @@ model User {
   Like Like[]
   author Task[] @relation("author")
   responsible Task[] @relation("responsible")
+  leader Team[]
   member TeamMember[]
   chatMember ChatMember[]
   role Role[]
@@ -119,6 +120,7 @@ model Team {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   members TeamMember[]
+  leader User @relation(fields: [leaderId], references: [userId])
 }
 
 model TeamMember {
