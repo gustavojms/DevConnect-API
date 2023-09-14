@@ -10,6 +10,7 @@ import { JwtAuthGuard } from './modules/auth/jwt-auth.guard';
 import { PostsModule } from './modules/posts/posts.module';
 import { CommentsModule } from './modules/comments/comments.module';
 import { LikesModule } from './modules/likes/likes.module';
+import { ProjectsModule } from './modules/projects/projects.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { LikesModule } from './modules/likes/likes.module';
     PostsModule,
     CommentsModule,
     LikesModule,
+    ProjectsModule,
     ConfigModule.forRoot({ isGlobal: true }),
   ],
   controllers: [AppController],
