@@ -53,31 +53,31 @@ $ npm run build
 
 ## Curtidas e Reações
 
-- [ ] `POST /api/posts/:id/like`: Adiciona uma curtida a um post.
-- [ ] `POST /api/posts/:id/unlike`: Remove uma curtida de um post.
+- [x] `POST /api/posts/:id/like`: Adiciona uma curtida a um post.
+- [x] `POST /api/posts/:id/unlike`: Remove uma curtida de um post.
 
 ## Projetos e Tarefas
 
-- [ ] `GET /api/projects`: Obtém uma lista de projetos.
-- [ ] `GET /api/projects/:id`: Obtém um projeto específico.
-- [ ] `POST /api/projects`: Cria um novo projeto.
-- [ ] `PUT /api/projects/:id`: Atualiza um projeto existente.
-- [ ] `DELETE /api/projects/:id`: Deleta um projeto.
+- [x] `GET /api/projects`: Obtém uma lista de projetos.
+- [x] `GET /api/projects/:id`: Obtém um projeto específico.
+- [x] `POST /api/projects`: Cria um novo projeto.
+- [x] `PUT /api/projects/:id`: Atualiza um projeto existente.
+- [x] `DELETE /api/projects/:id`: Deleta um projeto.
 - [ ] `GET /api/projects/:id/tasks`: Obtém tarefas para um projeto.
 - [ ] `POST /api/projects/:id/tasks`: Adiciona uma nova tarefa a um projeto.
 - [ ] `PUT /api/tasks/:id`: Atualiza uma tarefa.
 - [ ] `DELETE /api/tasks/:id`: Deleta uma tarefa.
 
-## Times e Associações
+## Times e Membros
 
-- [ ] `GET /api/teams`: Obtém uma lista de times.
-- [ ] `GET /api/teams/:id`: Obtém um time específico.
-- [ ] `POST /api/teams`: Cria um novo time.
-- [ ] `PUT /api/teams/:id`: Atualiza um time existente.
-- [ ] `DELETE /api/teams/:id`: Deleta um time.
-- [ ] `GET /api/teams/:id/members`: Obtém membros de um time.
-- [ ] `POST /api/teams/:id/members`: Adiciona um membro a um time.
-- [ ] `DELETE /api/teams/:id/members/:userId`: Remove um membro de um time.
+- [x] `GET /api/teams`: Obtém uma lista de times.
+- [x] `GET /api/teams/:id`: Obtém um time específico.
+- [x] `POST /api/teams`: Cria um novo time.
+- [x] `PUT /api/teams/:id`: Atualiza um time existente.
+- [x] `DELETE /api/teams/:id`: Deleta um time.
+- [x] `GET /api/teams/:id/members`: Obtém membros de um time.
+- [x] `POST /api/teams/:id/members`: Adiciona um membro a um time.
+- [x] `DELETE /api/teams/:id/members/:userId`: Remove um membro de um time.
 
 ## Conversas e Mensagens
 
