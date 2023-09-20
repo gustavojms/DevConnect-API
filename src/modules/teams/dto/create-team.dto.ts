@@ -5,4 +5,5 @@ export class CreateTeamDto {
   leaderId: number;
   createdAt: Date;
   updatedAt: Date;
+  projectId: number;
 }

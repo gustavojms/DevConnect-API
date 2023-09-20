@@ -7,4 +7,5 @@ export class TeamEntity implements Team {
   leaderId: number;
   createdAt: Date;
   updatedAt: Date;
+  projectId: number;
 }
