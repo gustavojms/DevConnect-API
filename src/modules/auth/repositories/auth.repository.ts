@@ -52,6 +52,7 @@ export class AuthRepository implements AuthInterfaceRepository {
 
     return {
       access_token: await this.jwtService.signAsync(payload),
+      payload
     };
   }
 }
