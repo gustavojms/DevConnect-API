@@ -7,7 +7,6 @@ import { ProjectRepository } from './repositories/project.repository';
 export class ProjectsService {
   constructor(private projectRepository: ProjectRepository) {}
   create(createProjectDto: CreateProjectDto) {
-    
     return this.projectRepository.create(createProjectDto);
   }
 
