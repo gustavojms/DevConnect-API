@@ -5,7 +5,7 @@ export class TeamEntity implements Team {
   teamName: string;
   description: string;
   leaderId: number;
+  projectId: number;
   createdAt: Date;
   updatedAt: Date;
-  projectId: number;
 }

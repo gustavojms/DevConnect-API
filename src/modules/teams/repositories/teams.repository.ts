@@ -13,7 +13,7 @@ export class TeamsRepository implements TeamsInterfaceRepository {
         teamName: team.teamName,
         description: team.description,
         leaderId: team.leaderId,
-        projectId: team.projectId
+        projectId: team.projectId,
       },
     });
 
