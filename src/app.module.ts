@@ -13,6 +13,7 @@ import { LikesModule } from './modules/likes/likes.module';
 import { TeamsModule } from './modules/teams/teams.module';
 import { TeamMembersModule } from './modules/team_members/team_members.module';
 import { ProjectsModule } from './modules/projects/projects.module';
+import { SprintModule } from './modules/sprint/sprint.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ProjectsModule } from './modules/projects/projects.module';
     TeamsModule,
     TeamMembersModule,
     ProjectsModule,
+    SprintModule,
     ConfigModule.forRoot({ isGlobal: true }),
   ],
   controllers: [AppController],
