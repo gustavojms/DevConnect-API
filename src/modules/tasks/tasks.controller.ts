@@ -3,31 +3,36 @@ import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 
-@Controller('api/tasks')
+@Controller('api')
 export class TasksController {
-  constructor(private readonly tasksService: TasksService) {}
+  constructor(private readonly tasksService: TasksService) { }
 
-  @Post()
-  create(@Body() createTaskDto: CreateTaskDto) {
-    return this.tasksService.create(createTaskDto);
+  @Post('/projects/:projectId/task')
+  create(@Param('projectId') projectId: number, @Body() createTaskDto: CreateTaskDto) {
+    return this.tasksService.create(+projectId, createTaskDto);
   }
 
-  @Get()
+  @Get('/task')
   findAll() {
     return this.tasksService.findAll();
   }
 
-  @Get(':id')
+  @Get('/projects/:projectId/task')
+  findAllByProject(@Param('projectId') projectId: number) {
+    return this.tasksService.findAllByProject(+projectId);
+  }
+
+  @Get('/task/:id')
   findOne(@Param('id') id: string) {
     return this.tasksService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Patch('/task/:id')
   update(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
     return this.tasksService.update(+id, updateTaskDto);
   }
 
-  @Delete(':id')
+  @Delete('/task/:id')
   remove(@Param('id') id: string) {
     return this.tasksService.remove(+id);
   }

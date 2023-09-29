@@ -5,13 +5,17 @@ import { TasksRepository } from './repositories/tasks.repository';
 
 @Injectable()
 export class TasksService {
-  constructor(private taskRepository: TasksRepository) {}
-  create(createTaskDto: CreateTaskDto) {
-    return this.taskRepository.create(createTaskDto);
+  constructor(private taskRepository: TasksRepository) { }
+  create(projectId: number, createTaskDto: CreateTaskDto) {
+    return this.taskRepository.create(projectId, createTaskDto);
   }
 
   findAll() {
     return this.taskRepository.findAll();
+  }
+
+  findAllByProject(projectId: number) {
+    return this.taskRepository.findAllByProject(projectId);
   }
 
   findOne(id: number) {
