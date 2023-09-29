@@ -63,10 +63,10 @@ $ npm run build
 - [x] `POST /api/projects`: Cria um novo projeto.
 - [x] `PUT /api/projects/:id`: Atualiza um projeto existente.
 - [x] `DELETE /api/projects/:id`: Deleta um projeto.
-- [ ] `GET /api/projects/:id/tasks`: Obtém tarefas para um projeto.
-- [ ] `POST /api/projects/:id/tasks`: Adiciona uma nova tarefa a um projeto.
-- [ ] `PUT /api/tasks/:id`: Atualiza uma tarefa.
-- [ ] `DELETE /api/tasks/:id`: Deleta uma tarefa.
+- [x] `GET /api/projects/:id/task`: Obtém tarefas para um projeto.
+- [x] `POST /api/projects/:id/task`: Adiciona uma nova tarefa a um projeto.
+- [x] `PUT /api/task/:id`: Atualiza uma tarefa.
+- [x] `DELETE /api/task/:id`: Deleta uma tarefa.
 
 ## Times e Membros
 
