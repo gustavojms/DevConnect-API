@@ -1,6 +1,5 @@
-import { CreateProjectDto } from "../dto/create-project.dto";
-import { UpdateProjectDto } from "../dto/update-project.dto";
-
+import { CreateProjectDto } from '../dto/create-project.dto';
+import { UpdateProjectDto } from '../dto/update-project.dto';
 
 export interface ProjectInterfaceRepository {
   create(project: CreateProjectDto): Promise<CreateProjectDto>;

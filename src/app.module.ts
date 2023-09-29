@@ -14,6 +14,7 @@ import { TeamsModule } from './modules/teams/teams.module';
 import { TeamMembersModule } from './modules/team_members/team_members.module';
 import { ProjectsModule } from './modules/projects/projects.module';
 import { SprintModule } from './modules/sprint/sprint.module';
+import { TasksModule } from './modules/tasks/tasks.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { SprintModule } from './modules/sprint/sprint.module';
     TeamMembersModule,
     ProjectsModule,
     SprintModule,
+    TasksModule,
     ConfigModule.forRoot({ isGlobal: true }),
   ],
   controllers: [AppController],
