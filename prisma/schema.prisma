@@ -100,19 +100,19 @@ model Task {
   taskId        Int      @id @default(autoincrement())
   title         String
   description   String?
-  priority      String
-  status        String
+  priority      String?
+  status        String?
   hoursTaken    Float?
   userId        Int
-  responsibleId Int
+  responsibleId Int?
   projectId     Int
-  sprintId      Int
+  sprintId      Int?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   author        User     @relation("author", fields: [userId], references: [userId])
-  responsible   User     @relation("responsible", fields: [responsibleId], references: [userId])
+  responsible   User?    @relation("responsible", fields: [responsibleId], references: [userId])
   project       Project  @relation(fields: [projectId], references: [projectId])
-  sprint        Sprint   @relation(fields: [sprintId], references: [sprintId])
+  sprint        Sprint?  @relation(fields: [sprintId], references: [sprintId])
 }
 
 model Team {

@@ -18,6 +18,10 @@ export class TasksService {
     return this.taskRepository.findAllByProject(projectId);
   }
 
+  findAllByStatus(projectId: number, status: string) {
+    return this.taskRepository.findAllByStatus(projectId, status);
+  }
+
   findOne(id: number) {
     return this.taskRepository.findById(id);
   }

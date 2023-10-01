@@ -7,7 +7,6 @@ export class CreateTaskDto {
   hoursTaken: number;
   userId: number;
   responsibleId: number;
-  projectId: number;
   sprintId: number;
   createdAt: Date;
   updatedAt: Date;

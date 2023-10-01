@@ -34,6 +34,17 @@ export class TasksRepository implements TasksInterfaceRepository {
     return tasks;
   }
 
+  async findAllByStatus(projectId: number, status: string): Promise<CreateTaskDto[]> {
+    const tasks = await this.prisma.task.findMany({
+      where: {
+        projectId: projectId,
+        status: status
+      },
+    });
+
+    return tasks;
+  }
+
   async findById(taskId: number) {
     const task = await this.prisma.task.findFirst({
       where: {
