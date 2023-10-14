@@ -27,6 +27,23 @@ export class ProjectRepository implements ProjectInterfaceRepository {
     return projects;
   }
 
+  async findAllByTeamMember(userId: number): Promise<CreateProjectDto[]> {
+    const projects = await this.prisma.teamMember.findMany({
+      where: {
+        memberId: userId,
+      },
+      include: {
+        team: {
+          include: {
+            project: true,
+          },
+        },
+      },
+    });
+
+    return projects.map((teamMember) => teamMember.team.project);
+  }
+
   async findOne(id: number): Promise<CreateProjectDto> {
     const project = await this.prisma.project.findUnique({
       where: {

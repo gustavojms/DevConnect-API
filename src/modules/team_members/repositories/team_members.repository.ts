@@ -7,9 +7,12 @@ export class TeamMembersRepository implements TeamMembersInterfaceRepository {
   constructor(@Inject(PrismaService) private prisma: PrismaService) {}
 
   async create(teamMember: CreateTeamMemberDto): Promise<CreateTeamMemberDto> {
-    const userAlreadyInTeam = await this.prisma.teamMember.findFirst({
+    const userAlreadyInTeam = await this.prisma.teamMember.findUnique({
       where: {
-        memberId: teamMember.memberId,
+        memberId_teamId: {
+          memberId: teamMember.memberId,
+          teamId: teamMember.teamId,
+        },
       },
     });
 
@@ -36,7 +39,10 @@ export class TeamMembersRepository implements TeamMembersInterfaceRepository {
   async findOne(teamMemberId: number): Promise<CreateTeamMemberDto> {
     const teamMember = await this.prisma.teamMember.findUnique({
       where: {
-        teamMemberId: teamMemberId,
+        memberId_teamId: {
+          memberId: teamMemberId,
+          teamId: teamMemberId,
+        },
       },
     });
 
@@ -46,7 +52,10 @@ export class TeamMembersRepository implements TeamMembersInterfaceRepository {
   async remove(teamMemberId: number): Promise<void> {
     await this.prisma.teamMember.delete({
       where: {
-        teamMemberId: teamMemberId,
+        memberId_teamId: {
+          memberId: teamMemberId,
+          teamId: teamMemberId,
+        },
       },
     });
   }

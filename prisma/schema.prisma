@@ -120,22 +120,22 @@ model Team {
   teamName    String
   description String?
   leaderId    Int
-  projectId   Int
+  projectId   Int?
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   members     TeamMember[]
   leader      User         @relation(fields: [leaderId], references: [userId])
-  project     Project      @relation(fields: [projectId], references: [projectId])
+  project     Project?      @relation(fields: [projectId], references: [projectId])
 }
 
 model TeamMember {
-  teamMemberId Int      @id @default(autoincrement())
   memberId     Int
   teamId       Int
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   member       User     @relation(fields: [memberId], references: [userId])
   team         Team     @relation(fields: [teamId], references: [teamId])
+  @@id([memberId, teamId])
 }
 
 model Chat {
