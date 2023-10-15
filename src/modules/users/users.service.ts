@@ -8,7 +8,8 @@ export class UsersService {
   constructor(private userRepository: UsersRepository) {}
 
   findAll() {
-    return `This action returns all users`;
+    const allUser = this.userRepository.findAll();
+    return allUser;
   }
 
   findOne(id: number) {
