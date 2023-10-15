@@ -5,15 +5,14 @@ import { UpdateProjectDto } from '../dto/update-project.dto';
 import { ProjectInterfaceRepository } from './projects.interface.repository';
 
 export class ProjectRepository implements ProjectInterfaceRepository {
-  constructor(@Inject(PrismaService) private prisma: PrismaService) {}
+  constructor(@Inject(PrismaService) private prisma: PrismaService) { }
 
   async create(project: CreateProjectDto): Promise<CreateProjectDto> {
-    const userId = Number(project.projectOwner);
     const projectCreated = await this.prisma.project.create({
       data: {
         title: project.title,
         description: project.description,
-        projectOwner: userId,
+        projectOwner: project.projectOwner,
         parentProjectId: project.parentProjectId,
       },
     });
