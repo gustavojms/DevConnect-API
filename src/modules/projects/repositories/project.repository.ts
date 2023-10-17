@@ -57,9 +57,36 @@ export class ProjectRepository implements ProjectInterfaceRepository {
       },
     });
 
-    return projects.flatMap((project) =>
-      project.team.flatMap((team) => team.members),
+    const userIds = projects.flatMap((project) =>
+      project.team.flatMap((team) =>
+        team.members.map((member) => member.memberId),
+      ),
     );
+
+    const users = await this.prisma.user.findMany({
+      where: {
+        userId: {
+          in: userIds,
+        },
+      },
+      select: {
+        userId: true,
+        username: true,
+      },
+    });
+
+    const userMap = new Map(users.map((user) => [user.userId, user.username]));
+
+    const membersWithUsernames = projects.flatMap((project) =>
+      project.team.flatMap((team) =>
+        team.members.map((member) => ({
+          userId: member.memberId,
+          username: userMap.get(member.memberId),
+        })),
+      ),
+    );
+
+    return membersWithUsernames;
   }
 
   async findOne(id: number): Promise<CreateProjectDto> {
