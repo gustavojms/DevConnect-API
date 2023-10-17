@@ -5,7 +5,7 @@ import { UpdateProjectDto } from '../dto/update-project.dto';
 import { ProjectInterfaceRepository } from './projects.interface.repository';
 
 export class ProjectRepository implements ProjectInterfaceRepository {
-  constructor(@Inject(PrismaService) private prisma: PrismaService) { }
+  constructor(@Inject(PrismaService) private prisma: PrismaService) {}
 
   async create(project: CreateProjectDto): Promise<CreateProjectDto> {
     const projectCreated = await this.prisma.project.create({
@@ -26,7 +26,7 @@ export class ProjectRepository implements ProjectInterfaceRepository {
     return projects;
   }
 
-  async findAllByTeamMember(userId: number): Promise<CreateProjectDto[]> {
+  async findAllProjectsOfMember(userId: number): Promise<CreateProjectDto[]> {
     const projects = await this.prisma.teamMember.findMany({
       where: {
         memberId: userId,
@@ -41,6 +41,25 @@ export class ProjectRepository implements ProjectInterfaceRepository {
     });
 
     return projects.map((teamMember) => teamMember.team.project);
+  }
+
+  async findAllMembers(id: number) {
+    const projects = await this.prisma.project.findMany({
+      where: {
+        projectId: id,
+      },
+      include: {
+        team: {
+          include: {
+            members: true,
+          },
+        },
+      },
+    });
+
+    return projects.flatMap((project) =>
+      project.team.flatMap((team) => team.members),
+    );
   }
 
   async findOne(id: number): Promise<CreateProjectDto> {

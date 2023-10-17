@@ -14,8 +14,12 @@ export class ProjectsService {
     return this.projectRepository.findAll();
   }
 
-  findAllByTeamMember(id: number) {
-    return this.projectRepository.findAllByTeamMember(id);
+  findAllProjectsOfMember(id: number) {
+    return this.projectRepository.findAllProjectsOfMember(id);
+  }
+
+  findAllMembersOfProject(id: number) {
+    return this.projectRepository.findAllMembers(id);
   }
 
   findOne(id: number) {
