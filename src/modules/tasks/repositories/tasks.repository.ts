@@ -1,22 +1,21 @@
-import { Inject } from "@nestjs/common";
-import { CreateTaskDto } from "../dto/create-task.dto";
-import { TasksInterfaceRepository } from "./tasks.interface.repository";
-import { PrismaService } from "src/database/prisma.service";
-import { UpdateTaskDto } from "../dto/update-task.dto";
+import { Inject } from '@nestjs/common';
+import { CreateTaskDto } from '../dto/create-task.dto';
+import { TasksInterfaceRepository } from './tasks.interface.repository';
+import { PrismaService } from 'src/database/prisma.service';
+import { UpdateTaskDto } from '../dto/update-task.dto';
 
 export class TasksRepository implements TasksInterfaceRepository {
-  constructor(@Inject(PrismaService) private prisma: PrismaService) { }
+  constructor(@Inject(PrismaService) private prisma: PrismaService) {}
 
   async create(projectId: number, data: CreateTaskDto) {
     const task = await this.prisma.task.create({
       data: {
         projectId: projectId,
-        ...data
+        ...data,
       },
     });
 
     return task;
-
   }
 
   async findAll() {
@@ -27,18 +26,28 @@ export class TasksRepository implements TasksInterfaceRepository {
   async findAllByProject(projectId: number): Promise<CreateTaskDto[]> {
     const tasks = await this.prisma.task.findMany({
       where: {
-        projectId: projectId
-      }
+        projectId: projectId,
+      },
+      include: {
+        author: {
+          select: {
+            username: true,
+          },
+        },
+      },
     });
 
     return tasks;
   }
 
-  async findAllByStatus(projectId: number, status: string): Promise<CreateTaskDto[]> {
+  async findAllByStatus(
+    projectId: number,
+    status: string,
+  ): Promise<CreateTaskDto[]> {
     const tasks = await this.prisma.task.findMany({
       where: {
         projectId: projectId,
-        status: status
+        status: status,
       },
     });
 
