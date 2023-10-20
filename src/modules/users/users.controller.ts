@@ -7,12 +7,10 @@ import {
   Delete,
   UseGuards,
   Request,
-  Post,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('api/user')
 export class UsersController {

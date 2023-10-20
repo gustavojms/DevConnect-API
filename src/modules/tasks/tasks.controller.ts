@@ -1,14 +1,25 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Controller('api')
 export class TasksController {
-  constructor(private readonly tasksService: TasksService) { }
+  constructor(private readonly tasksService: TasksService) {}
 
   @Post('/projects/:projectId/task')
-  create(@Param('projectId') projectId: number, @Body() createTaskDto: CreateTaskDto) {
+  create(
+    @Param('projectId') projectId: number,
+    @Body() createTaskDto: CreateTaskDto,
+  ) {
     return this.tasksService.create(+projectId, createTaskDto);
   }
 
@@ -23,7 +34,10 @@ export class TasksController {
   }
 
   @Get('/projects/:projectId/task/:status')
-  findAllByStatus(@Param('projectId') projectId: number, @Param('status') status: string) {
+  findAllByStatus(
+    @Param('projectId') projectId: number,
+    @Param('status') status: string,
+  ) {
     return this.tasksService.findAllByStatus(+projectId, status);
   }
 

@@ -1,6 +1,6 @@
-import { CreateSprintDto } from "./dto/create-sprint.dto";
-import { UpdateSprintDto } from "./dto/update-sprint.dto";
-import { SprintRepository } from "./repositories/sprint.repository";
+import { CreateSprintDto } from './dto/create-sprint.dto';
+import { UpdateSprintDto } from './dto/update-sprint.dto';
+import { SprintRepository } from './repositories/sprint.repository';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

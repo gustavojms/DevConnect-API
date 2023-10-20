@@ -1,5 +1,5 @@
-export class CreateSprintDto{
-    sprintId: number;
-    title: string;
-    term: Date;
+export class CreateSprintDto {
+  sprintId: number;
+  title: string;
+  term: Date;
 }

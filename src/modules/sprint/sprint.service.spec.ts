@@ -1,7 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { SprintService } from './sprint.service';
 
-
 describe('SprintService', () => {
   let service: SprintService;
 

@@ -67,18 +67,7 @@ export class ProjectRepository implements ProjectInterfaceRepository {
       },
     });
 
-    const transformedProjects = projects.map((project) => {
-      const transformedTeam = project.team.map((team) => ({
-        teamName: team.teamName,
-        members: team.members.map((member) => member.member),
-      }));
-
-      return transformedTeam;
-    });
-
-    const flattenedProjects = [].concat(...transformedProjects);
-
-    return flattenedProjects;
+    return projects;
   }
 
   async findOne(id: number): Promise<CreateProjectDto> {
