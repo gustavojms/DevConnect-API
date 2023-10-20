@@ -29,6 +29,12 @@ export class TasksRepository implements TasksInterfaceRepository {
         projectId: projectId,
       },
       include: {
+        responsible: {
+          select: {
+            userId: true,
+            username: true,
+          },
+        },
         author: {
           select: {
             username: true,
