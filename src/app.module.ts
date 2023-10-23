@@ -15,6 +15,7 @@ import { TeamMembersModule } from './modules/team_members/team_members.module';
 import { ProjectsModule } from './modules/projects/projects.module';
 import { SprintModule } from './modules/sprint/sprint.module';
 import { TasksModule } from './modules/tasks/tasks.module';
+import { RolesModule } from './modules/roles/roles.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { TasksModule } from './modules/tasks/tasks.module';
     ProjectsModule,
     SprintModule,
     TasksModule,
+    RolesModule,
     ConfigModule.forRoot({ isGlobal: true }),
   ],
   controllers: [AppController],
