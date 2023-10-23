@@ -118,3 +118,8 @@ $ npm run build
 - [ ] `GET /api/group-chats/:id/members`: Obtém membros de uma conversa em grupo.
 - [ ] `POST /api/group-chats/:id/members`: Adiciona um membro a uma conversa em grupo.
 - [ ] `DELETE /api/group-chats/:id/members/:userId`: Remove um membro de uma conversa em grupo.
+
+## Papéis
+- [x] `GET api/roles/:id`
+- [x] `POST /api/roles:id`
+- [x] `DELETE /api/roles/:id`
