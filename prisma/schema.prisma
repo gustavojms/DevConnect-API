@@ -88,6 +88,7 @@ model Project {
   projectId       Int      @id @default(autoincrement())
   title           String
   description     String
+  public          Boolean
   projectOwner    Int
   parentProjectId Int?
   createdAt       DateTime @default(now())
