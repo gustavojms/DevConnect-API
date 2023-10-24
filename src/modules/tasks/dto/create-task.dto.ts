@@ -10,4 +10,6 @@ export class CreateTaskDto {
   sprintId: number;
   createdAt: Date;
   updatedAt: Date;
+  startedAt: Date;
+  endedAt: Date;
 }

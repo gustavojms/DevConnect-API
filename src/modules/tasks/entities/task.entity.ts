@@ -13,4 +13,6 @@ export class TaskEntity implements Task {
   sprintId: number;
   createdAt: Date;
   updatedAt: Date;
+  startedAt: Date;
+  endedAt: Date;
 }

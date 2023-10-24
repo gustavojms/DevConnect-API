@@ -71,6 +71,8 @@ export class TasksRepository implements TasksInterfaceRepository {
   }
 
   async update(taskId: number, data: UpdateTaskDto) {
+    // raw sql
+
     const task = await this.prisma.task.update({
       where: {
         taskId: taskId,
