@@ -4,7 +4,7 @@ export class ProjectEntity implements Project {
   projectId: number;
   title: string;
   description: string;
-  public: boolean;
+  isPublic: boolean;
   projectOwner: number;
   parentProjectId: number;
   createdAt: Date;

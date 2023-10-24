@@ -12,7 +12,7 @@ export class ProjectRepository implements ProjectInterfaceRepository {
       data: {
         title: project.title,
         description: project.description,
-        public: project.public,
+        isPublic: project.isPublic,
         projectOwner: project.projectOwner,
         parentProjectId: project.parentProjectId,
       },
