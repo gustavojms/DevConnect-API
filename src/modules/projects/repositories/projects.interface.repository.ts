@@ -4,6 +4,7 @@ import { UpdateProjectDto } from '../dto/update-project.dto';
 export interface ProjectInterfaceRepository {
   create(project: CreateProjectDto): Promise<CreateProjectDto>;
   findAll(): Promise<CreateProjectDto[]>;
+  findAllProjectsPublic(): Promise<CreateProjectDto[]>;
   findAllProjectsOfMember(id: number): Promise<CreateProjectDto[]>;
   findAllMembers(id: number);
   findOne(id: number): Promise<CreateProjectDto>;

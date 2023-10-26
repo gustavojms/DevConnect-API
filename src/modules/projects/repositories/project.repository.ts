@@ -27,6 +27,14 @@ export class ProjectRepository implements ProjectInterfaceRepository {
     return projects;
   }
 
+  async findAllProjectsPublic(): Promise<CreateProjectDto[]> {
+    return await this.prisma.project.findMany({
+      where: {
+        isPublic: true,
+      },
+    });
+  }
+
   async findAllProjectsOfMember(userId: number): Promise<CreateProjectDto[]> {
     const projects = await this.prisma.teamMember.findMany({
       where: {

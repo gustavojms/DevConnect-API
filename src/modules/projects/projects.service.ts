@@ -14,6 +14,10 @@ export class ProjectsService {
     return this.projectRepository.findAll();
   }
 
+  findALlProjectsPublic() {
+    return this.projectRepository.findAllProjectsPublic();
+  }
+
   findAllProjectsOfMember(id: number) {
     return this.projectRepository.findAllProjectsOfMember(id);
   }
