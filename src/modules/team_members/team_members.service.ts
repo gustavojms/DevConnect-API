@@ -10,8 +10,8 @@ export class TeamMembersService {
     return this.teamMembersRepository.create(createTeamMemberDto);
   }
 
-  findAll() {
-    return this.teamMembersRepository.findAll();
+  findAll(id:number) {
+    return this.teamMembersRepository.findAll(id);
   }
 
   findOne(id: number) {

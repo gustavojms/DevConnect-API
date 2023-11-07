@@ -30,9 +30,12 @@ export class TeamMembersRepository implements TeamMembersInterfaceRepository {
     return teamMemberCreated;
   }
 
-  async findAll(): Promise<CreateTeamMemberDto[]> {
-    const teamMembers = await this.prisma.teamMember.findMany();
-
+  async findAll(teamId: number): Promise<CreateTeamMemberDto[]> {
+    const teamMembers = await this.prisma.teamMember.findMany({
+      where: {
+        teamId: teamId,
+      },
+    });
     return teamMembers;
   }
 

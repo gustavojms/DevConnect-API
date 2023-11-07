@@ -12,8 +12,8 @@ export class TeamMembersController {
   }
 
   @Get()
-  findAll() {
-    return this.teamMembersService.findAll();
+  findAll(@Param('teamId') id: number) {
+    return this.teamMembersService.findAll(+id);
   }
 
   @Get(':id')
