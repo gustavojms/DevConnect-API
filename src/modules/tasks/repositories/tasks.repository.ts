@@ -65,6 +65,19 @@ export class TasksRepository implements TasksInterfaceRepository {
       where: {
         taskId: taskId,
       },
+      include: {
+        responsible: {
+          select: {
+            userId: true,
+            username: true,
+          },
+        },
+        author: {
+          select: {
+            username: true,
+          },
+        },
+      },
     });
 
     return task;
