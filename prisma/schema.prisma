@@ -136,8 +136,8 @@ model TeamMember {
   teamId    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  member    User     @relation(fields: [memberId], references: [userId])
-  team      Team     @relation(fields: [teamId], references: [teamId])
+  member    User     @relation(fields: [memberId], references: [userId], onUpdate: Cascade, onDelete: Cascade)
+  team      Team     @relation(fields: [teamId], references: [teamId], onUpdate: Cascade, onDelete: Cascade)
 
   @@id([memberId, teamId])
 }
