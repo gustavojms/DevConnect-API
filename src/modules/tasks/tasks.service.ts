@@ -33,4 +33,8 @@ export class TasksService {
   remove(id: number) {
     return this.taskRepository.delete(id);
   }
+
+  findAllByUser(userId: number){
+    return this.taskRepository.findAllByUser(userId);
+  }
 }

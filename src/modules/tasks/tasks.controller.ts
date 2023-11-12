@@ -55,4 +55,11 @@ export class TasksController {
   remove(@Param('id') id: string) {
     return this.tasksService.remove(+id);
   }
+
+  @Get('task/user/:userId')
+  findByUser(@Param ('userId') userId: number){
+    console.log('Type of userId in controller:', typeof userId);
+    return this.tasksService.findAllByUser(+userId);
+  }
+
 }
