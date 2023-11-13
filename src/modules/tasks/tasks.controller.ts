@@ -58,7 +58,7 @@ export class TasksController {
 
   @Get('task/user/:userId')
   findByUser(@Param ('userId') userId: number){
-    console.log('Type of userId in controller:', typeof userId);
+    
     return this.tasksService.findAllByUser(+userId);
   }
 
