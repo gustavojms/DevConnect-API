@@ -3,6 +3,7 @@ import { UsersInterfaceRepository } from './users.interface.repository';
 import { ConflictException, Inject } from '@nestjs/common';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
+import * as bcrypt from 'bcrypt';
 
 /**
  * @description
@@ -66,7 +67,7 @@ export class UsersRepository implements UsersInterfaceRepository {
       data: {
         username: user.username,
         email: user.email,
-        password: user.password,
+        password: await bcrypt.hash(user.password, 10),
         photoUrl: user.photoUrl,
         updatedAt: new Date(),
       },
