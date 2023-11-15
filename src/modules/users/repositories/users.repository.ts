@@ -2,6 +2,7 @@ import { PrismaService } from 'src/database/prisma.service';
 import { UsersInterfaceRepository } from './users.interface.repository';
 import { ConflictException, Inject } from '@nestjs/common';
 import { CreateUserDto } from '../dto/create-user.dto';
+import { UpdateUserDto } from '../dto/update-user.dto';
 
 /**
  * @description
@@ -55,5 +56,30 @@ export class UsersRepository implements UsersInterfaceRepository {
   async findAll(): Promise<CreateUserDto[]> {
     const users = await this.prisma.user.findMany();
     return users;
+  }
+
+  async update(userId: number, user: UpdateUserDto): Promise<UpdateUserDto> {
+    const userUpdated = await this.prisma.user.update({
+      where: {
+        userId: userId,
+      },
+      data: {
+        username: user.username,
+        email: user.email,
+        password: user.password,
+        photoUrl: user.photoUrl,
+        updatedAt: new Date(),
+      },
+    });
+
+    return userUpdated;
+  }
+
+  async remove(userId: number): Promise<void> {
+    await this.prisma.user.delete({
+      where: {
+        userId: userId,
+      },
+    });
   }
 }

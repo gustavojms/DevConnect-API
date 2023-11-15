@@ -30,11 +30,29 @@ export class TeamMembersRepository implements TeamMembersInterfaceRepository {
     return teamMemberCreated;
   }
 
-  async findAll(teamId: number): Promise<CreateTeamMemberDto[]> {
+  async findAll(teamId: number) {
     const teamMembers = await this.prisma.teamMember.findMany({
       where: {
         teamId: teamId,
       },
+      select: {
+        team: {
+          select: {
+            teamName: true,
+            members: {
+              select: {
+                member: {
+                  select: {
+                    username: true,
+                    userId: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      distinct: ['teamId'],
     });
     return teamMembers;
   }

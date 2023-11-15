@@ -1,4 +1,5 @@
 import { CreateUserDto } from '../dto/create-user.dto';
+import { UpdateUserDto } from '../dto/update-user.dto';
 
 export interface UsersInterfaceRepository {
   /**
@@ -8,4 +9,6 @@ export interface UsersInterfaceRepository {
   findOne(id: number): Promise<CreateUserDto>;
   findByEmail(email: string): Promise<CreateUserDto>;
   findByUsername(username: string): Promise<CreateUserDto>;
+  update(id: number, updateUserDto: UpdateUserDto): Promise<UpdateUserDto>;
+  remove(id: number): Promise<void>;
 }
