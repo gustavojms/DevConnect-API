@@ -36,7 +36,7 @@ model Role {
   userId    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  User      User     @relation(fields: [userId], references: [userId])
+  User      User     @relation(fields: [userId], references: [userId], onUpdate: Cascade, onDelete: Cascade)
 }
 
 model Post {
@@ -46,7 +46,7 @@ model Post {
   likesCount Int       @default(0)
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
-  User       User      @relation(fields: [userId], references: [userId])
+  User       User      @relation(fields: [userId], references: [userId], onUpdate: Cascade, onDelete: Cascade)
   comments   Comment[]
   likes      Like[]
 }
@@ -58,7 +58,7 @@ model Comment {
   authorId  Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  User      User     @relation(fields: [authorId], references: [userId])
+  User      User     @relation(fields: [authorId], references: [userId], onUpdate: Cascade, onDelete: Cascade)
   Post      Post     @relation(fields: [postId], references: [postId])
   replies   Reply[]
 }
@@ -70,7 +70,7 @@ model Reply {
   userId    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  User      User     @relation(fields: [userId], references: [userId])
+  User      User     @relation(fields: [userId], references: [userId], onUpdate: Cascade, onDelete: Cascade)
   Comment   Comment  @relation(fields: [commentId], references: [commentId])
 }
 
@@ -80,7 +80,7 @@ model Like {
   postId    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  User      User     @relation(fields: [userId], references: [userId])
+  User      User     @relation(fields: [userId], references: [userId], onUpdate: Cascade, onDelete: Cascade)
   Post      Post     @relation(fields: [postId], references: [postId])
 }
 
@@ -112,8 +112,8 @@ model Task {
   updatedAt     DateTime  @updatedAt
   startedAt     DateTime? @db.Date
   endedAt       DateTime? @db.Date
-  author        User      @relation("author", fields: [userId], references: [userId])
-  responsible   User?     @relation("responsible", fields: [responsibleId], references: [userId])
+  author        User      @relation("author", fields: [userId], references: [userId], onUpdate: Cascade, onDelete: Cascade)
+  responsible   User?     @relation("responsible", fields: [responsibleId], references: [userId], onUpdate: Cascade, onDelete: Cascade)
   project       Project   @relation(fields: [projectId], references: [projectId])
   sprint        Sprint?   @relation(fields: [sprintId], references: [sprintId])
 }
@@ -127,7 +127,7 @@ model Team {
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   members     TeamMember[]
-  leader      User         @relation(fields: [leaderId], references: [userId])
+  leader      User         @relation(fields: [leaderId], references: [userId], onUpdate: Cascade, onDelete: Cascade)
   project     Project?     @relation(fields: [projectId], references: [projectId])
 }
 
@@ -160,7 +160,7 @@ model ChatMember {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   chat         Chat     @relation(fields: [chatId], references: [chatId])
-  user         User     @relation(fields: [userId], references: [userId])
+  user         User     @relation(fields: [userId], references: [userId], onUpdate: Cascade, onDelete: Cascade)
 }
 
 model Message {

@@ -22,7 +22,15 @@ export class RolesRepository implements RolesInterfaceRepository {
     }
 
     async findAll(): Promise<CreateRoleDto[]> {
-        const roles = await this.prisma.role.findMany();
+        const roles = await this.prisma.role.findMany({
+            include: {
+                User: {
+                    select: {
+                        username: true,
+                    }
+                }
+            }
+        });
 
         return roles;
     }
@@ -31,6 +39,15 @@ export class RolesRepository implements RolesInterfaceRepository {
         const role = await this.prisma.role.findUnique({
             where: {
                 roleId: id
+            },
+            include : {
+                User: {
+                    select: {
+                        username: true,
+                        email: true,
+
+                    }
+                }
             }
         });
 
