@@ -21,4 +21,8 @@ export class TeamMembersService {
   remove(id: number) {
     return this.teamMembersRepository.remove(id);
   }
+
+  update(id: number, createTeamMemberDto: CreateTeamMemberDto[]) {
+    return this.teamMembersRepository.update(id, createTeamMemberDto);
+  }
 }

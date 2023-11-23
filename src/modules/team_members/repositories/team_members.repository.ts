@@ -39,6 +39,7 @@ export class TeamMembersRepository implements TeamMembersInterfaceRepository {
         team: {
           select: {
             teamName: true,
+            description: true,
             members: {
               select: {
                 member: {
@@ -79,5 +80,36 @@ export class TeamMembersRepository implements TeamMembersInterfaceRepository {
         },
       },
     });
+  }
+
+  async update(
+    teamId: number,
+    teamMember: CreateTeamMemberDto[],
+  ): Promise<void> {
+
+    const existingTeam = await this.prisma.team.findMany({
+      where: {
+        teamId: teamId,
+      },
+    });
+
+    if (!existingTeam) {
+      throw new ConflictException('Team does not exist');
+    }
+
+    await this.prisma.teamMember.deleteMany({
+      where: {
+        teamId: teamId,
+      },
+    });
+
+    for (const m of teamMember) {
+      await this.prisma.teamMember.create({
+        data: {
+          memberId: m.memberId,
+          teamId: teamId,
+        },
+      });
+    }
   }
 }

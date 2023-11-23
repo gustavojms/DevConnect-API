@@ -11,6 +11,11 @@ export class TeamMembersController {
     return this.teamMembersService.create(createTeamMemberDto);
   }
 
+  @Post('/update')
+  update(@Param('teamId') id: string, @Body() createTeamMemberDto: CreateTeamMemberDto[]) {
+    return this.teamMembersService.update(+id, createTeamMemberDto);
+  }
+
   @Get()
   findAll(@Param('teamId') id: number) {
     return this.teamMembersService.findAll(+id);

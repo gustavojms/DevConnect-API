@@ -5,4 +5,5 @@ export interface TeamMembersInterfaceRepository {
   findAll(teamId:number);
   findOne(teamMemberId: number): Promise<CreateTeamMemberDto>;
   remove(teamMemberId: number): Promise<void>;
+  update(teamId: number, teamMember: CreateTeamMemberDto[]): Promise<void>;
 }
