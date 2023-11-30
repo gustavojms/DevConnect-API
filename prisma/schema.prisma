@@ -95,7 +95,7 @@ model Project {
   updatedAt       DateTime @updatedAt
   tasks           Task[]
   team            Team[]
-  column          Column[]
+  columns         Column[]
   projectColumn   ProjectColumn[]
   sprint          Sprint[]
 }

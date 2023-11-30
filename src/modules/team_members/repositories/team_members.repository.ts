@@ -86,7 +86,6 @@ export class TeamMembersRepository implements TeamMembersInterfaceRepository {
     teamId: number,
     teamMember: CreateTeamMemberDto[],
   ): Promise<void> {
-
     const existingTeam = await this.prisma.team.findMany({
       where: {
         teamId: teamId,
