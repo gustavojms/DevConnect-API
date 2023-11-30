@@ -36,28 +36,30 @@ export class ProjectRepository implements ProjectInterfaceRepository {
   }
 
   async findAllProjectsOfMember(userId: number): Promise<CreateProjectDto[]> {
-    const ownerProjects = await this.prisma.teamMember.findMany({
+    const ownerProjects = await this.prisma.project.findMany({
       where: {
-        OR: [{
-          memberId: userId,
-        }, {
-          team: {
-            project: {
-              projectOwner: userId,
-            }
-          }
-        }]
+        OR: [
+          {
+            projectOwner: userId,
+          },
+          {
+            team: {
+              some: {
+                members: {
+                  some: {
+                    member: {
+                      userId: userId,
+                    },
+                  },
+                },
+              },
+            },
+          },
+        ],
       },
-      select: {
-        team: {
-          include: {
-            project: true
-          }
-        }
-      }
-    })
+    });
 
-    return ownerProjects.map((projects) => projects.team.project);
+    return ownerProjects;
   }
 
   async findAllMembers(id: number) {
@@ -91,6 +93,9 @@ export class ProjectRepository implements ProjectInterfaceRepository {
     const project = await this.prisma.project.findUnique({
       where: {
         projectId: id,
+      },
+      include: {
+        sprint: true,
       },
     });
 
