@@ -15,6 +15,10 @@ export class ColumnsService {
     return this.columnsRepository.findAll();
   }
 
+  findMany(ids: number[]) {
+    return this.columnsRepository.findMany(ids);
+  }
+
   findOne(id: number) {
     return this.columnsRepository.findOne(id);
   }

@@ -25,6 +25,11 @@ export class ColumnsController {
     return this.columnsService.findAll();
   }
 
+  @Get(':ids')
+  findMany(@Body() ids: number[]) {
+    return this.columnsService.findMany(ids);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.columnsService.findOne(+id);

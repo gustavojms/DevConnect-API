@@ -24,6 +24,18 @@ export class ColumnsRepository implements ColumnsInterfaceRepository {
     return columns;
   }
 
+  async findMany(ids: number[]): Promise<CreateColumnDto[]> {
+    const columns = await this.prisma.column.findMany({
+      where: {
+        columnId: {
+          in: ids,
+        },
+      },
+    });
+
+    return columns;
+  }
+
   async findOne(columnId: number): Promise<CreateColumnDto> {
     const column = await this.prisma.column.findUnique({
       where: {
