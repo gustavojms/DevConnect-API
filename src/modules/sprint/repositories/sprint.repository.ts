@@ -12,7 +12,7 @@ export class SprintRepository implements SprintInterfaceRepository {
       data: {
         title: sprint.title,
         term: sprint.term,
-        projectId: sprint.projectId,
+        projectId: Number(sprint.projectId),
       },
     });
 
