@@ -96,7 +96,6 @@ model Project {
   tasks           Task[]
   team            Team[]
   columns         Column[]
-  projectColumn   ProjectColumn[]
   sprint          Sprint[]
 }
 
@@ -107,16 +106,6 @@ model Column {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   project    Project  @relation(fields: [projectId], references: [projectId], onUpdate: Cascade, onDelete: Cascade)
-  projectColumn ProjectColumn[]
-}
-
-model ProjectColumn {
-  projectId       Int
-  columnId        Int
-  project         Project  @relation(fields: [projectId], references: [projectId], onUpdate: Cascade, onDelete: Cascade)
-  column          Column   @relation(fields: [columnId], references: [columnId], onUpdate: Cascade, onDelete: Cascade)
-
-  @@id([projectId, columnId])
 }
 
 model Task {
