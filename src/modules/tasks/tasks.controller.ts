@@ -62,4 +62,9 @@ export class TasksController {
     return this.tasksService.findAllByUser(+userId);
   }
 
+  @Get('task/project/:projectId')
+  findFinalizedTaskByProject(@Param('projectId') projectId: number){
+    return this.tasksService.findFinalizedTaskByProject(+projectId);
+  }
+
 }

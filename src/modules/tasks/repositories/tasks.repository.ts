@@ -71,6 +71,30 @@ export class TasksRepository implements TasksInterfaceRepository {
     return tasks;
   }
   
+  async findFinalizedTaskByProject(projectId: number): Promise<CreateTaskDto[]> {
+    const tasks = await this.prisma.task.findMany({
+      where: {
+        projectId: projectId,
+        endedAt: {
+          not: null,
+        },
+      },
+      include: {
+        responsible: {
+          select: {
+            userId: true,
+            username: true,
+          },
+        },
+        author: {
+          select: {
+            username: true,
+          },
+        },
+      },
+    });
+    return tasks;
+  }
 
   async findAllByStatus(
     projectId: number,

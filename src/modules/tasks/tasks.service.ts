@@ -37,4 +37,8 @@ export class TasksService {
   findAllByUser(userId: number){
     return this.taskRepository.findAllByUser(userId);
   }
+
+  findFinalizedTaskByProject(projectId: number){
+    return this.taskRepository.findFinalizedTaskByProject(projectId);
+  }
 }
