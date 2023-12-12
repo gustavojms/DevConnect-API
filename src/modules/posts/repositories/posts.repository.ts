@@ -20,8 +20,16 @@ export class PostsRepository implements PostsInterfaceRepository {
   }
 
   async findAll(): Promise<CreatePostDto[]> {
-    const posts = await this.prisma.post.findMany();
-
+    const posts = await this.prisma.post.findMany({
+      include: {
+        User: {
+          select: {
+            username: true,
+          },
+        },
+      },
+    });
+    
     return posts;
   }
 
