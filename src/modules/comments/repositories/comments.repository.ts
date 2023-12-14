@@ -23,8 +23,15 @@ export class CommentsRepository {
   }
 
   async findAll(): Promise<CreateCommentDto[]> {
-    const comments = await this.prisma.comment.findMany();
-
+    const comments = await this.prisma.comment.findMany({
+      include: {
+        User: {
+          select: {
+            username: true,
+          },
+        },
+      },
+    });
     return comments;
   }
 

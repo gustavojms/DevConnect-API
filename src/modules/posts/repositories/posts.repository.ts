@@ -38,6 +38,13 @@ export class PostsRepository implements PostsInterfaceRepository {
       where: {
         postId: postId,
       },
+      include: {
+        User: {
+          select: {
+            username: true,
+          },
+        },
+      },
     });
 
     return post;
